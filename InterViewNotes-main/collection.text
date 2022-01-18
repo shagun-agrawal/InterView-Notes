@@ -1,0 +1,17 @@
+Collection FrameWrok
+    |->list
+    |   |
+    |   |->ArrayList
+    |   |->LinkedList
+    |
+    |->Queue
+    |   |
+    |   |->PriorityQueue
+    |   |->ArrayDeque
+    |
+    |->Set
+    |   |
+    |   |->HashSet
+    |   |->LinkedHashSet    
+    |   |->SortedSet 
+    |   |->TreeSet 

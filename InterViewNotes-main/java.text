@@ -1,0 +1,1478 @@
+Note:
+    * in java variable either store 0 or blank value as default they are not contain
+      any garbage value.
+
+Why we need to set path of java:
+    dos or any terminal there is no command for name java & javac. that by it give error.
+    -in acutal javac is a compiler not a command..                       
+                       
+                       
+                        Type Conversion
+Widening Conversion: small type assign into large type.
+    int y =3;
+    float x=y; //Widening conversion, no error.
+                no data loss. 
+Narrowing Conversion: large type assign into small type.
+    float x = 3.4f;         f----> indicate it is a float value else double.
+    int y = x; //narrowing conversion,  error.
+
+    int y =(int)x;      //no error. type casting. forcefully
+
+    float k = 3.5;       //narrowing conversion, error, double assign into float.
+    float k = 3.5f;       //no error.
+
+
+
+    ---------------------- class & object ---------------------
+    if we store data about a persion using normal varible then there are lots
+    of people/student then relation between variable are not managable.
+
+    so object oriented philosophy is that we store all information reltaed to one entity.
+    for this purpose we make classes. Hence we need that types of variable that can sotre
+    complete information about any entity.
+
+    class: 
+        * class is a description of an object's property and behaviour
+        * creating class is as good as creating data type
+        * class is defining a category of data 
+
+        variable in class known as properties
+        methods in class known as behavior
+        
+    object:
+        * Object is a real world entity
+        * Object is an instance of a class
+        * Object consumes memory to hold properties values.
+
+    Example:
+
+        class Box
+        {
+            //properties of class
+            private int length,breadth, height;
+
+            //methods or behaviors
+            public void setDimension(int l,int b,int h){
+                length=l;breadth=b;height=h;
+            }
+
+            public void showDimension(){
+                System.out.println("L ="+length);
+                System.out.println("B ="+breadth);
+                System.out.println("H ="+height);
+            }
+        }
+
+        //while object not create of this class it doesn't occupies any space.
+        class Example{
+            public static void main(String[]args){
+                Box smallBox = new Box();
+                //here smallBox contain reference of block which created by new Box();
+                smallBox.setDimension(12,10,5); //reference variable can be used as box name.
+                smallBox.showDimension();
+
+                smallBox = new Box();
+                //now smallBox refer to another block & previous block remove 
+                //when garbage colletor run.
+                smallBox.showDimension(); //print 0 0 0 default value of instance.
+            }
+        }
+
+        * instance members variable,variable inside class.instance mean object.
+        * instance variable create each time while a object created.
+          and they are tread as different for all objects.
+        * instance member function, function inside a class.
+
+
+        ---------------------- static member in java ----------------------
+        * Static member variable
+        * static member function
+        * in java there is no static variable in method.
+        * but we can have static inner class.
+        
+
+        class Example {
+            int x; //instance variable
+            static int y; //static member variable.
+
+            public void fun1(){
+                //instance member function, it can call by only its object.
+                static int a;   //not allow in java. its an error.
+            }
+            public static void fun2(){
+                //
+            }
+
+            static class Test{
+                //static inner class, it's possible in java.
+            }
+        }   
+
+        * static variable are declared in the class using static keyword.
+        * static variables are by default initialized to its default value[0].
+        * static variable has a single copy for   the whole class and doesn't 
+          depend on the objects.
+        
+
+        instance variable are present in all object but static variable are not present
+        it make only one time for complte class. it also known as class variable.
+        if we don't make any object of class then static variable also create.
+
+        it access by class name.
+            Example.y = 5;
+            Example.fun2();
+
+        * static memeber function only access static member means only static variable.
+            public static void fun2(){
+                x = 4;//not allow
+                y = 4; //allow.
+            }
+
+        static class *************
+        class Example{
+            static class Test{
+                public static String country = "INDIA";
+            }
+
+        }
+        public class Hello{
+            public static void main(String[]args){
+                System.out.println(Example.Test.country);
+            }
+        }
+
+        Note: static variable used for store information about class.like rate of intreset.
+
+
+
+-------------------- Wrapper class in java -------------------
+    [java is not 100% object oriented programming.]
+    * java is an object-oriented language and as said everything in java is an object.
+    * But what about the primitive
+    * They are sort of left out in the world of objects, that is, they cannot participate
+      in the ojbect activities.
+
+    it is possible that we can not create any obect and we do our work without oops.
+    that by it not 100% oops. we can ignore it but java have solution for this.
+        that is Wrapper classes.
+
+    * As a solution to this problem, java allows you to include the primitives in the 
+    family of objects by using what are called wrapper classes.
+    * There is a wrapper class for every primitive data type in java. 
+
+    example: we make a class like Integer there we store only integer value.
+    now it works as object. this types classes are known as wrapper classes.
+
+    In java for all primitive data types Wrapper classes are present
+
+            boolean     ->      Boolean
+            byte        ->      Byte
+            char        ->      Character
+            short       ->      Short
+            int         ->      Integer
+            long        ->      Long
+            float       ->      Float
+            double      ->      Double 
+
+    in this wrapper classes some are important function are present.
+        * valueOf()
+            - Static method.
+            - Return Ojbect reference of relative wrapper class
+        * parseXxx()
+            -Static method
+            -Xxx can be replaced by any primitive type.
+            -It returns xxx type value.
+            -Example parseInt,parseFloat,parseDouble etc.
+        * xxxValue()
+            - Instance method of wrapper class.
+            - Xxxx can be replaced by any primitive type.
+            - Return corresponding primitive type.
+
+    public class Example{
+        public static void main(String[]args){
+            Integer = Integer.valueOf("123");     //we pass data as string.
+            Double = Double.valueOf("3.14");
+            Integer = Integer.valueOf("101011",2) //keep this value in binary form.
+
+
+            int a = Integer.parseInt("123");  //convert passing data string into int[xxx] type.
+            double d =  Double.parseDouble("13.45");
+
+
+
+            int c = i1.intValue();  //c = 43; here i is object that's we can use it.
+
+
+        }
+    }
+
+
+
+    ---------------------- Packages in Java --------------------------
+    * Packages are nothing more than the way we organize files into different
+      directories according to their functionality, usability as well as category
+      they should belong.
+    * Files in one directory (or package) would have different functionality from 
+      those of another directory.
+    
+    For Example : Files in java.io package do something reltaed to I/O, but files in
+    java.net package give us the way to deal with the network.
+
+    Advantage of package:
+        Name Collision[in different pkg put same class, no error]
+            * Packaging also help us to avoid class name collision when we use the 
+              same class name as that of others.
+            * The benefits of using package reflect the ease of maintenance, organization,
+              and increase collaboration among developers.
+
+              How to make package in java***********
+              Example:
+
+              package world;    //all .class file now store in world package.
+               public class HelloWorld{
+                   public static void main(String[]args){
+                       System.out.println("HelloWorld!");
+                   }
+               }
+
+              javac HelloWorld.java  //only comiple not make package.
+              javac -d . HelloWorld     //in current directory make package
+
+              //now .class file is into package not in current folder.
+              java world.HelloWorld     //now it run.   
+
+
+    * We can have only one public class in a single java file.
+    * Name of the file should be same as the name of public class.
+    * In absence of public class, any class name can give to the file name.java.
+
+
+
+
+
+    ------------------- import in java -------------------------
+    * import is a keyword in java
+    * It is used to import classes of other packages.
+
+
+
+    ----------------- Access Modifiers -------------------------
+    * Java supports four categories of accessibility rules
+        - private
+        - protected
+        - public
+        - default ,no need to write it, it is default if no one mention.
+    
+    * Modifiers can be used for class, member variables and member functions.
+
+
+    With class:
+        * Outer class and inner class.
+        * For outer class, there can be only two possibilites, either class is a public
+          or just a class which means it is of default type.
+        * For inner class any among four access modifers can be used.
+
+    Remember:
+        * There can only one public class in single java file.
+        * The name of the java file must be the same as the name of the public class.
+        * Only public class can be accessed directory from outside the package.
+
+    Member variables and functions:
+        * When members of the class are private, they can not accessed from outside
+          the class body. they are meant to be accessed from the same class in which 
+          they are declared.
+        * When members are protected, they can be accessed from any class of the same
+          package and child class from other package.
+        * When members are public, they are accessible from any class of any package.
+        * When members are default, they are accessit only from the class of same package.
+
+
+        ----------------- Constructor in java ----------------------
+        * Constructor is a member function of a class
+        * The name of Constructor is same as the name of the class.
+        * Constructor has no return type.
+        * Constructor call it self when object create of class.
+        * use for define default value at the time creating object.
+          and reprsent a real world entity.
+
+
+        public class Box{
+            private int l,b,h;
+            public Box(){
+                l=10;b=8;h=4;
+            }
+            //this is Constructor overloading.name same,argument differet.
+            public Box(int L,int B,int H){
+                l=L;b=B,h=H;
+            }
+
+            public static void main(String[]args){
+                Box b1 = new Box();
+                Box b2 = new Box(20,15,5);
+            }
+        }
+
+        * Constructor is a special method that is used to initialize a 
+          newly created object and is called implicitly, just after the 
+          memory is allocated for the object.
+        * It is not mandatory for the coder to write a Constructor for
+          the class.
+        * When there is no Constructor defined in the class by programmer,
+          compiler implicitly provide a default Constructor for the class.
+        * Constructors can be parameterized.
+        * Constructor can be overloaded.
+
+
+        ------------------ Inheritance in java ------------------
+        acquires the properties from one class to other classes.
+        class SubClass extends SuperClass{
+
+        }
+        * extends is a keyword
+        * Base class means super class.
+        * Derived class means sub class.
+
+
+
+        Example:
+            public class Person{
+                private int age;
+                private String name;
+                public void setAge(int a){age =a;}
+                public void setName(String n){name = n;}
+                public int getAge(){
+                    return age;
+                }
+                public String getName(){
+                    return name;
+                }
+            }
+
+            class Student extends Person{
+                private int rollno;
+                public void setRollno(int r){
+                    rollno = r;
+                }
+                public int getRollno(){return rollno;}
+            }
+
+            public class Example{
+                public static void main(String[]args){
+                    Student s1 = new Student();
+                    s1.setRollno(100);
+                    s1.setName("Rahul");
+                    s1.setAge(18);
+                    System.out.println("Rollno: "+ s1.getRollno());
+                    System.out.println("Name: "+s1.getName());
+                    System.out.println("Age: "+s1.getAge());
+                }
+            }
+
+            //javac *.java  //run all java file.
+
+        Remember:
+            * In the java programming language, each class is allowed 
+              to have one direct superclass, and each superclass has the
+              potential for an unlimited number of subclasses.
+              [means multiple Inheritance are not allow in java.]
+              class subclass extends sup1,sup2,sup3 {} //not allow.
+            * Private members of the superclass are not accessible by 
+              the subclass and can only be indirectly accessed.
+            * Members that have default accessibility in the superclass
+              are also not accessible by subclasses in other package.
+
+        ** Java supports    
+            # Single Inheritance[above example]
+            # Multilevel Inheritance
+            //sup1->sup2->sup3->child 
+            # Hierarchical Inheritance
+            //      persion--->Employee
+                        |----> Teacher      
+                    persion Inherite by multiple child class.
+
+        
+        ----------------- Initialization block in Java ----------------
+                            [also known as initializer]
+        
+        * There are two types of initialzation blocks
+            -> Instance Initialization block.[belong to object]
+            -> Static Initialization block.[belong to class.]
+        
+        Instance Initialization block Example----------:
+
+            public class Text{
+                private int x;
+                {   //no name, it run when we crate obj of class. 
+                    System.out.println("Initialization Block: x = "+x);
+                    x=5;
+                }
+
+                public Test(){
+                    System.out.println("Constructor:x="+x);
+                }
+                
+                public static void main(String[]args){
+                    Test t1 = new Test();
+                    Test t2 = new Test();
+                }
+            }
+
+
+            * we can make more than one Initialization block. compiler convert
+              to all in single block. sequence to disturb. and this complete block.
+              write in the starting of Constructor. thats by when create object
+              then block call itself.
+
+              * An instance initializer or Initialization block declared in a class
+                is executed when an instance of the class is created.
+              * return keyword cnanot be used in initialization block.
+              * Instance initializers are permitted to refer to the current object
+                via the keyword this and to use teh keyword super can be used.
+
+        Static Initialization block Example------------:
+        public class Test{
+            private static int k;
+            static{
+                System.out.println("Static Initalization Block:k="+k);
+                k=10;
+            }
+            public static void main(String[]args){
+                new Test();
+            }
+        }
+
+            * we can also make more than one static block compiler convert into one.
+            * it run before create first object of class.
+            * it run only one time in a life of class.  
+
+            * A static initializer declared in a class is executed whe the class
+              is initialized.
+            * Static initializers may be used to initialize the class variable
+              of the class.
+            * return keywor cannot be used in static initialization block.
+            * this or super can not be used in static block.
+
+
+
+        ---------------------- Function Overloading in Java -----------------
+        * If two methods of a class (whether both declared in the same class,
+          or both inherited by a class, or one declared and one inherited) have
+          the same name but signatures that are not same, then the method name is 
+          said to be overloaded.
+        
+        * Method overloading is a way to implement polymorphism.------------------
+
+        Example:
+            class A{
+                public void f1(int x){
+                    System.out.println("Class A");
+                }
+            }
+            ---------
+
+            class B extends A{
+                //class B inherite f1 method also. so it is function overloading.
+                public void f1(int x,int y){
+                    System.out.println("Class B");
+                }
+            }
+
+            ------------
+
+            public class Example{
+                public static void main(String[]args){
+                    B obj = new B();//create object of class B.
+                    obj.f1(5); //first version run.
+                    obj.f1(3,4);  //second version run.
+                    //both f1 can run with different argument that's is known
+                    //as function overloading. in c++ this is known as function hidding.
+                    //child version hide parent version run f1(int,int).    
+                }
+            }
+
+        * in function overloading return type not matter only name will be same.
+          and some difference in function parameter.
+        * if write both function in parent class or child then it also called 
+          function overloading.  
+        * when we call function with same name. but it decide at compile time 
+          which run when.
+
+
+        
+        * Overriding in Java -------------------
+            * Method oveerriding is defining a method in subclass with the same 
+              signature with specific implementation in respect to the subclass.
+                //in overloading signature are different but name is same.
+            * Why overriding?.
+
+            Example:
+                class A{
+                    public void f1(int x){
+                        System.out.println("Class A");
+                    }
+                }
+                -------------
+                class B extends A{
+                    public void f1(int x){
+                        System.out.println("Class B");
+                    }
+                }
+                -------------
+                public class Example{
+                    public static void main(String[]args){
+                        B obj = new B();
+                        obj.f1(5);      //call child f1 only.
+                        
+                    }
+                }
+
+
+                * one version(f1) in parent one in child & signature also same of both.
+                  so we say that child version override parent version.
+                * by inherite in child class two f1 are there but child version override
+                  parent version so when we call f1 with child class obj. then only call 
+                  child f1.
+
+            Uses: when  we want to define a parent class method according to us.  or we want
+            change coding of parent method.
+
+
+
+        ------------------ final keyword in Java -------------------
+        in java we can not make local variable as static, only class variable can become static.
+        final keyword used at five position.
+            -> final instance variable
+            -> final static variable
+            -> final local variable
+            -> final class
+            -> final method
+
+        1. final instance variable---------
+            * A java variable can be declared using the keyword final. then the final
+              variable can be assigned only once.
+            * A variable that is declared as final and not initialized is called a 
+              "blank final variable". A blank final variable forces either the 
+              Constructors to initialize it or initialization block to do this job.
+            
+            Example:
+                public class Example{
+                    pirvate int x;      //instance member variable
+                    private final int x;    //final instance member variable.
+
+                    public static void main(String[]args){
+                        Example e1 = new Example();  
+                    }
+                }
+
+
+                * if final variable are not assign any value then they are blank.
+                * we can initialize it by three way.
+                    |-> at creating time like public final int x = 12;
+                    |-> initialization block
+                    |   {
+                    |       x = 5;
+                    |   }
+                    |-> through Constructor
+                    |   Example(){ x = 5;}
+
+                * we can initialize at once.
+
+            2. final static variable---------
+                
+                * Static member variable when qualified with final keyword, it become
+                  blank until initialize.
+                * Final static variable can be initialize during declaration or within
+                  the static block.
+
+                  Example:
+                    public class Example{
+                        private final static int x ;        //final static member variable.
+
+                        public static void main(String[]args){
+                            Example e1 = new Example();
+                        }
+                    }
+                * there are two way for initialize final static variable.
+                        |
+                        |-> at the time create, private final static int x =12;
+                        |-> by static block
+                            static{
+                                x = 13;
+                            }
+
+            3. final local variable--------------
+                * Local variables that are final must be initialize before its use, but you 
+                  should remember this rule is applicable to non final local variable too.
+                * Once they are initialize, can not be altered/change.
+
+                Example:
+                    public class Example{
+                        public void fun(){
+                            final int k ; //final local variable
+                        }
+                    }
+
+                    * local variable are blank in java. if we used before initialize it they
+                        give an error.
+                         
+
+            4. final class------------
+                * Java classes declared as final cannot be extended. Restricting Inheritance. 
+                * if class is final then we can not change inside it. by Inheritance.
+
+                example:
+                final class Dummy{
+                    //we can not make subclass of this final class.
+                }
+
+
+            * final method-------------
+                * Methods declared as final can not be overridden.
+
+                Example:
+                    class Dummy{
+                        public final void someFunction(){
+
+                        }
+                    }
+
+                    ------------
+                    class MoreDummy extends Dummy{
+                        public void someFunction(){
+                            //show error we can not override final method.
+                        }
+                    }  
+
+    
+    ----------------------- this keyword ------------------------------
+        * The this object reference is a local variable in instance member Methods
+           referring the caller object.
+        * this keyword is used as a reference to the current object which is an instance
+          of the current class.
+        * The this reference to the current object is useful in situations where a local
+          variable hides, or shadows, a field with the same name.
+
+
+          Example:
+            class Box{
+                private int l,b,h;
+                public void setDimension(int l,int b,int h) //local variable,instance method
+                {
+                    this.l=l;this.b=b;this.h=h;//this-> represent caller object.
+                }
+            }
+            public class Example{
+                public static void main(String[]args){
+                    Box b1 = new Box();
+                    b1.setDimension(12,10,5);
+                }
+            }
+        
+
+        * if a method needs to pass the current object to another method, it can do so 
+          using the this reference.
+        * Note that the this reference can't be used is a static context, as static code 
+          is not executed in the context of any object.  
+
+    ------------------ super keyword ---------------------
+    * In Inheritance, subclass object when call an instance member function of subclass
+      only, function contains implicit reference variables this and super both referring 
+      to the current object(object of subclass).
+    * the only difference in this and super is :
+            -> this reference variable is of subclass type
+            -> super reference variable is of superclass type.
+
+        Example:
+            class A{
+                public void f2(){
+
+                }
+                public void f1(){
+                    //this is overrriding with B class 
+                    //for acces it in B class use super in B class.
+                }
+            }
+            class B extends A{
+                public void f1(){
+                    //it contain two refer variable, this & super
+                    //both referring current object.
+                    super.f1();//class A class f1. 
+                }
+
+            }
+
+            class Example{
+                public static void main(String[]args){
+                    B obj = new B();
+                    obj.f1();
+                }
+            }
+
+    * if your method overrides one of its superclass's methods, you can invoke 
+      the superclass version method through the use of the keyword super.
+    * It avoid name conflict between member variable of superclasss subclass.
+
+    class A{
+        int z ; //instance variable
+    }
+    class B extends A{
+        int z;//instance varible
+        public void f1(){
+            int z;//local varible
+            z=2;
+            this.z = 3;
+            super.z=4;
+        }
+    }
+
+
+    --------------- static member in Inheritance in java ------------------
+
+    * A class C inherits from its direct super class all concrete methods m 
+      (both satatic and instance) of the superclass.
+    * No method declared in C has same signature. 
+      
+      class Parent{
+          public static void f1(){
+              System.out.println("Hello");
+          }
+      }
+      class child extends Parent{
+          //if it has no same signature method then it inherite that method form 
+          //parent then doesn't matter that static or instance method.
+
+      }
+      public class Example{
+          public static void main(String[]args){
+              Child.f1();
+          }
+      }
+
+      * If subclass has a method m with the same signature as of the method present in
+        the superclass, then method m hides the method of superclass. 
+
+      Node: if function static then same signature method in super & child class method 
+      are method hidding. if not static then that is called method overriding.
+
+      Remember:
+        * it is a compile time error if a static method hides an instance method.
+        * it is a compile-time error if an instance method overrides a static method.
+
+
+    Static member variables ---------------
+        * static member variable do not inherit. they can hide.
+
+        class Parent{
+            static int y = 4;
+        }
+        class Child extends Parent{
+            //if y hide here then static block run. like static int y;
+            static{
+                y = 5;
+            }
+        }
+        public class Example{
+            public static void main(String[]args){
+                System.out.println("y="+Child.y); //y=4;
+            }
+        }
+
+        --------------- Constructor in Inheritance -------------------
+        * Constructor are not inherited by subclass.
+        * What happens when object of subclass created?
+        * What is the role of Constructor?.
+
+        class A{
+
+        }
+        class B extends A{
+            //here compiler make default Constructor and call to parent Constructor also.
+        }
+        class  Example{
+            public static void main(String[]args){
+
+            }
+        }
+
+        * if we not define Constructor then compiler create default Constructor.
+          which node coding .
+
+        * Sub class's Constructor invokes Constructor of super class.
+        * Explicit call to the super class Constructor from sub class's Constructor
+          can be made using super().
+        * You can write a subclass Constructor that invokes the Constructor of the 
+          superclass, either implicitly or by using the keyword super.
+
+          class A{
+              int a;
+              public A(){
+                  System.out.println("A");
+              }
+          }
+          class B extends A{
+              int b;
+              public B(){
+                  //before it executed it call to parent Constructor.
+                   System.out.println("B");
+              }
+          }
+          class Example{
+              public static void main(String[]args){
+                  B obj = new B();
+              }
+          }                     //o|p     :     A then B. 
+
+          Scenarios:
+            * Implicit constructors in superclasss and subclass.
+            * Implicit constructor in subclass and explicit constructor in superclass.
+            * Implicit constructor in superclass and explicit constructor in subclass.
+            * Explicit constructor in superclass and subclass.
+
+        Parameterized construcotrs
+            * Subclass constructor may take arguments for its use as well as for the 
+              consturcotr of superclass.
+              
+
+    ------------------------ Constructor chaining -------------------------
+        when a constructor call its call other constructor this is known as 
+        constructor chaining.
+        * Constructor can call other constructors of the same class or superclass.
+        * Constructor call from a constructor must be the first step.(call should
+           appear in the first line.)
+        * Such series of invocation of constructors is known as constructr chaining.
+
+        class A{
+            public A(){
+                System.out.println("A1");
+            }
+        }
+        class B extends A{
+            public B(){//first line of it is super();
+                System.out.println("B1");
+            }
+        }
+
+        public class Example{
+            public static void main(String[]args){
+                B obj = new B();
+            }
+        }
+
+        -------another example.
+         class A{
+             public A(){
+                 System.out.println("A1");
+             }
+         }
+         class B extends A{
+             public B(){
+                 //we can write here this() or super() not both.
+                 this(4);
+                 System.out.println("B1");
+             }
+             public B(int k){
+                 //when control come here comipler write here super(); before execution. 
+                 System.out.println("B2");
+             }
+         }
+         public class Example{
+             public static void main(String[]args){
+                 B o1 = new B();
+             }
+         }
+         o|p    : A1, B2 B1.
+
+    * First line of constructor is either super() or this()(by default super());
+    *constructor never constins super() and this() both.
+
+
+    ---------------------- Abstract Class in Java ----------------------
+    * Abstract classes are declared with the abstract keyword.
+    * An abstract class cannot be instatiated.[we can not create an instatiate/object]
+
+    Example:
+        abstract class Person{      //this is an abstract class.
+            private String name;
+            private int age;
+            public void setName(String n){name = n;}
+            public void setAge(int a){age = a;}
+        }
+        class AbstractExample1{
+            public static void main(String[]args){
+                Person p = new Person():  //  can't instantiate, show error.     
+            }
+        }
+
+            
+                        PersionClass
+                        |           |
+                StudentClass        FacultyClass    
+
+            in college there is no persion. So don't create object of that class.
+            but student and Faculty are also persion in which some properties are 
+            same for that we make a class for persion and inherited by student &
+            Faculty. so that by we make PersionClass as abstract class.
+
+    
+
+    * Java Abstract classes are used to declared common characteristics of subclasses.
+    * It can only be used as a superclass for other classes that extend the abstract
+      class.
+    * Like any other class, an abstract class can contain fields that describe the 
+      characteristics and methods that describe the actions that a class can perfrom.
+    * We can not create object of abstract class but we can create reference variable
+      of abstract class.
+    * we know that referece variable of super class can hold refere of child class object.
+    
+       
+
+
+
+    ---------------------------------- Abstract methods ----------------------------
+    * An abstract class can include methods that contain no implementation. These are 
+      called abstract methods. The abstract method declaration must then end with a semicolon 
+      rather than a block.
+
+    * if a class has any abstract methods, whether declared or inherited, the entire class 
+      must be declared abstract.
+
+      Example with wrong and right way:
+      class Person{                         abstract class Person{
+          ...//error
+          abstract void show():                 abstract void show();
+      }                                           }
+      
+      class Student extends Person{         abstract class Student extends Person{
+          ... 
+          //error, it extends 
+          //abstract method.                                  ....
+      }                                                     }
+
+      class AbstractExample3{                               class AbstractExample3{
+          public static void main(String[]args){                    public static void main(String[]args){
+              Student s = new Student();                                Student s = new Student();
+              //error,we can not create obj, of                         
+              //abstract class.
+          }                                                           }
+      }                                                              } 
+
+        -----------------
+
+      abstract class Person{
+          abstract void show();
+      }
+
+      class Student extends Person{
+          void show(){
+              //some code.
+              //we override abstract method.
+              //now we can create object of student class.
+          }
+      }
+      class AbstractExample3{
+          public static void main(String[]args){
+              Students = new Student();
+              s.show();
+          }
+      }
+
+        --------------use of abstract method.
+        suppose any account class has abstract method calculate interest then if any
+        subclass want to inherit this class them it is mandatory to override this method.
+
+
+    ------------------------------- Interface in JAVA -----------------------------
+     * Interface definition begins with a keyword interface.
+        Syntax:-------------
+        interface someName{
+
+        }
+
+    * Interfaces just specify the method declaration(implicitly public and abstract) and can only
+      contain fields(which are implicitly public static final).
+    
+        interface SomeName{
+            int x;
+            void someFunction();
+            //body never define inside interface.
+        }
+
+        Example:
+            interface I1{
+                void someFunction();
+            }
+
+            class A implement I1{
+                public void someFunction(){
+                    //some code.
+                }
+            }
+        
+        * An interface like that of an abstract class cannot be instantiated.{not create obj.}
+        * Interface do not have constructor. but abstract call has constructor.
+
+        bcz constructor are used for define instance variable but in interface all variable are class variable.
+        that's by we don't need to define constructor.
+
+        * If a class that implements an interface does not define all the methods of the interface, then 
+          it must be decalred abstract and the method definitions should be provided by the subclass that 
+          extends the abstract class.
+        
+        interface Admission{
+            int registration();
+            int batchAllotment();
+            int iCardGeneration();
+        }
+        //anyone can implement admission interface. & define method accordingly.
+
+        * Multiple extension is allowed when extending interfaces i.e. one interface can extends 
+          none, one or more interface. {multiple Inheritance}
+
+          Example:
+          interface I1{
+
+          }
+          interface I2{
+
+          }
+          interface I3 extends I1,I2{
+              //multiple extension allow.
+              //but not allow in class, by use this it allow.
+          }
+
+          class A implement I3{
+              //define all method which is in I3,I2,I1.
+          }
+
+          class B extends A implements I3,I4{
+              //this is possible.
+          }
+
+        * You can not create object of any interface but creation of object referece is possible.
+          [we create referece variable of interface.]
+        * Object reference of interface can refer to any its subclass type.
+
+        Example:
+            interface I1{
+                void f1();
+            }
+            interface I2{
+                void f2();
+            }
+            class A implement I1,I2{
+                public void f1(){
+
+                }
+                public void f2(){
+
+                }
+                public void f3(){
+
+                }
+
+            }
+            -----------
+            class Example{
+                public static void main(String[]args){
+                    A obj = new A();
+                    obj.f1();
+                    obj.f2();
+                    obj.f3();
+                    //all function right and run perfactly.
+                }
+            }
+            -----------
+            class Example{
+                public static void main(String[]args){
+                    I1 obj = new A();       //create refere of interface
+                    obj.f1();       //right.
+                    obj.f2();       //error
+                    obj.f3();       //error
+                }
+            }
+
+            * in java Inheritance rule any parent call have referece of child class but can call only
+              those method which is define inside that parent class/interface.
+
+    ---------------------------- Difference between Abstract class and Interface in java------------------
+    * Abstrac class can have any access modifiers for member. Interface can have only pulic member.
+
+    Example:
+                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+                          inteface Calculatoion{                      class Person{                                                                                                                                                                         
+                               double PI = 3.14;                                                                                                                                                                                          
+                                                                         private String name;                                                                                                                                                
+                                int add (int a,int b);                   public void setName(String n)                                                                                                                                              
+                                int sub(int a,int b);                      {name = n;}                                                                                                                                                                           
+                                                                            public String getName()                                                       |                                     
+                               }                                          }                                                                                                                                                                   
+    * Abstrac class can have static or non static members. Interface can have only static member variable.
+    * Abstract class can have final or non final member. Interface can have only final member variable.
+    * Interface do not have constructor unlike abstract class[have].
+
+                                                                                                                                                                                                                                                                
+
+    ------------------------ Taking input in java ----------------------------
+    * We can read java input from System.in using Scanner class.
+    * Scanner is a final class, that is can not be extended.
+    * Scanner class is a part of java.util.package.
+
+     System.in -> responsible for taking input from keyword and put into memory buffer.
+     Scanner -> Class, we create object of it. and using nextInt() method fetch data from 
+                buffor in the form of int data.
+    x = sc.nextInt();
+
+    Useful Methods
+        * next();
+        * nextLine();
+        * nextBoolean();
+        * nextByte();
+        * nextDouble();
+        * nextFloat();
+        * nextInt();
+        * nextLong();
+        * nextShort();
+
+    * A Scanner breaks its input into tokens using a delimiter patter, which by default matches
+      whitespace.
+    * The resulting token may then be converted inot values of different tyes using the various next methods.
+
+
+
+    ------------------------------ Array in java -------------------------------
+    create only by dynamic method.
+    * int arr[] = new int[]{2,3,6,8,10};
+    * int arr[] = new int[2]{2,4,6,8,10};//error
+    * int arr[] = new[5]{2,3,4,5,8};//error:we can not mention size and vlue together.
+    * int arr[] = {2,4,6,10};
+    * Array is not blank. //default value is zero/
+    * int arr[]
+      arr = new int[3]; right;
+
+    ----------------------------- 2D array ------------------------------------
+    * int [][]arr or int arr[][] --------> this only a reference variable.
+    * int [][]a = new int[4][5];
+    * But 
+        -> int [][]a = new int[][];  //error 
+        -> int [][]a = new int[][5]; //error
+        -> int [][]a = new int[4][]; //correct
+        [][]-> first blok indicat for again reference variable.
+                Last block in acutal indiacte for data.
+        [4]->four referece variable.
+
+
+
+    * int [][]a = new int[][]{{3,4},{5,6},{7,8}};
+
+    * int [][]a = new int[4][];
+        System.out.println(a[0][0]); a[0] -> null, a[0][0]-> null pointer exception.
+        a[0] -> print null.
+        a.length -> print 4;
+        a[0].length -> null pointer exception.
+
+    * In java it is possible to declare a 2D array with different length of each array.
+        
+
+
+    ------------------------- String class in Java ----------------------------
+    * A java.lang.String class is final which implies no class can extend it.
+    * Java String class is immutable, i.e Strings in java, once created and initialized, cannot be 
+      changed on the same reference.
+    {
+        * mutable objects can be changed to any value.
+        * the immutable objects can not be changed to its value or state once it is created
+    }
+
+    * Creating String Object:
+        -> A simple String can be created using a String literal enclosed inside double quotes
+           as  show.
+        -> String str1 = "My name is Sheeshpal Singh";
+
+    Important Points:
+        -> If two or more String have the same set of characters in the same sequence then they
+           share the same reference in memory.
+        -> String str1 = "My name is Sheeshpal"
+           String str2 = "My name is Sheeshpal";
+           String str3 = "My name" + "is Sheeshpal":
+        -> All the String reference str1, str2 and str3 denote the same Sting object.
+
+
+    * Creating String with new keyword:-
+        # String str5 = new String("My name is Sheeshpal");
+
+    * The java.lang.String class differs from other classes, one difference being that the String
+      object can be used with the += and + operators for concatenation.
+
+    Example:
+        class StringExample1{
+            public static void main(String[]args){
+                String s1 = "computer";
+                String s2 = "computer";
+                String s3 = new String("computer");
+                System.out.println("Result 1:"+(s1==s2));//true;    //compare reference/address
+                System.out.println("Result 2:"+s1.equals(s2));//true    //compare values
+                System.out.println("Result 3:"+(s1==s3));//false
+                System.out.pritnln("Result 4:"+s1.equals(s3));//true
+            }
+        } 
+
+
+        String methods-------------
+        * Case conversion
+            -> toUpperCase() : convert string into upper case.
+            -> toLowerCase() : convert string into lower case.
+            Note: they doesn't chanage into actual string only return replica string.
+            Example: String s1 = new String("Computer");
+                      System.out.println(s1);
+                      String s2=s1.toUpperCase();
+                      System.out.println(s2);
+                      s2 = s1.toLowerCase();
+                      System.out.println(s2);
+
+        * indexOf():
+            -> indexOf(char ch)
+            -> indexOf(char ch,int fromIndex)
+            -> indexOf(String str)
+            -> indexOf(String str, int fromIndex)
+            -> lastIndexOf(char ch)
+            -> lastIndexOf(char ch,int fromIndex)
+            -> lastIndexOf(String str)
+            -> lastIndexOf(String str,int fromIndex)
+            in lastIndexOf search from last but print actual index of char or substring.
+            int computer mp search from last it print 2.
+
+        * comparing Strings:
+            -> equals() : s1.equals(s2) //true/false
+            -> equalsIgnoreCase(String anotherString)   //case insensitive. compare
+            -> compareTo(String s); //
+
+    ---------------------- Exception Handling in Java ---------------------------
+
+
+    ---------------------- Generic method in java ----------------------------
+        * Java Generic method and generic classes enable programmer to specify, with a single
+          method declaration, a set of related methods or, with a single class declaration, a 
+          set of related types. [work on different different data type. in same function.]
+
+        * We can write a single generic method declaration that can be called with arguments
+          of different types.
+
+          
+          Example:
+            compiler deside parameter type according to pass data type argument at the time calling.
+
+            public class Example{
+                public <E> void printArrayElements(E[]a){
+                    for(E x:a){
+                        System.out.println(" "+x);
+                    }
+                }
+
+                public static void main(String[]args){
+                    Example e1 = new Example();
+                    String s[] = new String[]{"India","India","India"};
+                    e1.printArrayElements(s);
+                }
+            }
+
+            compiler decide at the time of binding.
+             
+
+            public <E> void printArray(E []s){
+                for(int i=0;i<s.length;i++){
+                    System.out.println(s[i]);
+                }
+            }
+        * All generic method declaration have a type parameter section delimited by angle brackets
+          that precedes the method's return type.
+        * Each type parameter section contains one or more type parameters separated by commas.
+            example <E1,E2...>  this E don't refer to primitive type, it only refer to object type.
+        * The type parameters can be used to declare the return type.
+        * Type parameters can represent only reference types, not primitive type.
+
+
+    -------------------------- Generic class -------------------------
+        class MyData{
+            Integer i;
+            public void add(Integer i1){
+                i=i1;
+            }
+            public Integer get(){return(i);}
+        }
+        public class Example{
+            public static void main(String[]args){
+                MyData m = new MyData();
+                
+            }
+        }
+
+
+        Generic class---------------
+        class MyData<T>{
+            T i;
+            public void add(T i1){
+                i=i1;
+            }
+            public T get(){ return i;}
+        }
+
+        public class Example{
+            public static void main(String[]args){
+                MyData<Integer> m1 = new MyData<Integer>();
+                MyData<String> m1 = new MyData<String>
+                Integer k = new Integer(5);
+                m1.add(k);
+                m2.add("RAhul");
+                System.out.println(m1.get()+" "+m2.get());
+                
+            }
+        }
+
+        * A generic class declaration looks like a non-generic class declaration, except that the 
+          class name is followed by a type parameter section.
+        * As with generic methods, the type parameter section of a generic class can have one or 
+          more type parameters separated by commas.
+
+
+
+
+        ------------------------------------ Collection FrameWork -----------------------------------
+        Data Structure : is a way for storing data in efficient manner.  in terms of time and space.
+        type of Data Structure.
+
+
+            primitive DS                         Non-primitive DS[main of DS]
+            ex: boolean                     Liner                       Non-Linear
+                char                          -String                   -Graph
+                float                        -Array                    -Tree
+                byte                          -List,Set,Queue
+                double                          etc.
+                long            
+
+
+
+
+
+
+        Java Collections are the set of pre-defined classes and interfaces that helps to develop project 
+        quickly. these class provide implementation of stack,queue,likedlist set hashset etc.
+
+         Or 
+            The Collections Framework provides a well-designed set of interfaces and classes for storing 
+            and manipulating groups of data as a signle unit, a collection.
+
+                
+
+        ========================> 
+        -> Collecation : It is an object which can store multiple data.
+                            [for create this object java provide multiple interface & classes.]
+        -> Framework    : it represent the libraray.
+
+        Collection Framework is an API which contains predefined classes & interface. 
+        [It is the set of predefined classes & interfaces which is used to store multiple data.
+        for non-linear data structure.]
+
+        -> Collection Framework contains two main parts.
+                1) java.util.Collection : we can store data directly
+                2) java.util.Map    : data store in the form of key:value pair.
+
+        
+
+
+
+
+        Collection (Interface):-
+            It is the root interface (present in java.util package) of all collection objects.
+        
+        Collections(Utility Class):-
+            It is the utility class which contains only static methods.
+
+        What is Legacy Class[LC] : Collection Framework was not present in early version of java. 
+        when it devines only several classes and one interface to store the objects.
+            But when collection Framework came, these old classes were modify to support the 
+            collection framework. these old classes are known are legacy classes.
+            [modify version of previous class of old version classed.]
+
+
+        Hierarchy of Collection:
+
+                        I -> Interface.
+                        C -> Class.
+
+                                     Collection[root] (I)
+                                             |
+                                             |
+             -------------------------------------------------------------------
+            List [I]                         Set [I]                         Queue [I]
+             |                                 |                               |  -------------|
+     -----------------------              -------------------             PriorityQueue     Deque[I]
+     | [C]      | [C]      |[LC]           | [C]              |                                   |
+ ArrayList   LinkedList  Vector        HashSet            SortedSet [I]                     ArrayDeque
+                            | [LC]         | [C]              |                 
+                         Stack        LinkedHashSet        TreeSet           
+
+
+
+
+
+                                Map [I]
+                                 |
+            --------------------------------------------
+            HashMap[C]                           SortedMap[I]
+               |                                    |
+            LinkedHashMap [C]                    TreeMap[C]
+
+    in the above which can make object those are collection object. mean only class can make object.
+    so ArrayList,LinkedList,HasSet etc are the collection object.
+    
+
+
+
+        Difference between Arrays and Collection framework :------------
+
+                Arrays                                        |            Collection framework
+                                                              |
+    1. it can store primitive & non-primitive data types.     |    1. it can contain only non-primitive data type.
+        exampel class Test{}; Test[] t = {obj1,obj2...}       |       ArrayList al = new ArrayList(); al.add(_obj_); al.add(10);//10 here is Integer(obj).
+                                                              |
+                                                              |
+    2. it can only store Homogeneous/same data type.          |    2. we can store hetrogeneous/different data type.
+    3. Array size is fixed at run time.                       |    3. we an change size at run time.
+    4. here we develope feature and methods.                  |    4. it provide predefined classes, interfaces & method.
+
+
+
+
+    Difference between arraylist and array:---------------------
+        
+                Array                               ArrayList
+    1. it store primitive & non primitive      1. It only store non-primitive data types.
+        data types.
+    2. fixed size                              2. it a dynamic size.
+    3. it is fast                              3. slow down the perfromance.
+    4. Array can be multiple dimentsion        4. ArrayList is always single-dimensional.
+
+
+
+    Difference between ArrayList & collection LinkesList:--------------
+
+            ArrayList                                            LinkedList
+    1. ArrayList internally uses                    1. LinkedList internally uses a double
+    a dynamic array to store the element.              linkedlist to store the elements.
+
+    2. Manipulation with Arraylist is slow.         2. Manipulation with linkedList is faster
+    it internally uses an array. if an              than ArrayList bcz it uses a double 
+    element is removed from the array, all          linkedList, so no bit shifting is required.
+    the bits are shifted in memory.                 in memory.
+
+    3. An ArrayList class can act as a List         3. LinkedList class can act as a list and 
+    only bcz it implement list only.                queue both bcz it implement list and 
+                                                    Deque interfaces.
+
+    4. ArrayList is better for storing and          4. LinkedList is better for manipulating 
+    accessing data.                                 data.
+
+
+
+    

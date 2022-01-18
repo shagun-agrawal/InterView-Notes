@@ -1,0 +1,60 @@
+------------------------------------------- JavaBasics-----------------------------------
+
+1. Why is Java is platform independent language?.
+    In general compiler, compile source code to target code. and this targe code is directly execute on that perticular language.
+    but this target code doesn't execute on anyother platform.
+    but in java case java compiler, compile source code to byte code which is easly execute on any machine with the help of JRE only.
+
+2. Why is Java not a pure object oriented language?.
+    Java support primitive data types like int,float,byte,boolean,char,long and double. these data type are not an object.
+    that's why java is not pure object-oriented language.
+3. Pointers are used in C/ C++. Why does Java not make use of pointers?
+    Java is a secure language and it focuses on code simplicity. pointer is very complicated for understanding purpose. security is also 
+    compromised if pointer are used. bcz user can directly access memory.
+
+
+Node:
+    Reference: A reference is a variable that refers to something or hold and can be used as an alias for that variable.
+    Pointer: A pointer is a variable that stores a memory address, it is also indireactly another name of that any variable.
+    So, a pointer is a reference, but reference is not necessarily a pointer.
+
+4. What do you understand by an instance variable and a local variable?
+    Instance variables: are those variables that are accessible by all the methods in the class. They are declared outside the methods and inside the class. These variables describe the properties of an object
+
+    when we make lots of object of that class then all object have copy of these instance variable. if any modification is done by any
+    object then only instance of that object are affected and instance of all other object are unaffected.
+    --------------
+    Local variables are those variables present within a block, function, or constructor and can be accessed only inside them. 
+
+5.  What do you mean by data encapsulation?
+    Data Encapsulation is an Object-Oriented Programming concept of hiding the data attributes and their behaviors in a single unit.
+    It is used for the security of the private properties of an object
+            class {
+                data members(properties)
+                    +
+                method(behaviors)
+            }
+6. what is JDK?                                                             
+                                        Java Development Kit                                                                            |
+                                                                                                                                        |
+            ------------------------------------------------------------------------------------                                        |
+           |            JRE                                                                     |                                       |
+           |  -------------------------------------------          Compiler, Debugger &         |                                       |
+           | |                                          |          other Development tools      |                                       |
+           | |  ----------                              |                                       |
+           | | |         |     --------------------     |                                       |                                       |
+           | | |  JVM    |    | Library &Compiled  |    |                                       |                                       |
+           | | |         |    |     Class files    |    |                                       |
+           | |  ---------     ---------------------     |                                       |                                       |
+            ------------------------------------------------------------------------------------                                        |
+                                                                                                                                        |
+            JDK: is a developement to which basicaly provide tool for execution java     program.                                                                                                               
+            JVM: jvm is a part of jre which help to execute java byte code it simply take instructor one by one and send to the processor
+            for execution.
+
+            JIT : stands for just-in-time compiler
+
+
+
+            sql
+            
